@@ -1,0 +1,38 @@
+# ORACLE CLOUD GENERIC XPATH REFERENCE FOR AUTOMATION
+
+# Find input by label (using @for linkage)
+xpath=//input[@id=//label[normalize-space(.)='[Label Text]']/@for]
+
+# Find input by label text with following input (if @for is missing)
+xpath=//label[normalize-space(text())='[Label Text]']/following::input[1]
+
+# Find button by button text (e.g. Sign In)
+xpath=//span[normalize-space(text())='[Label Text]']/ancestor::button[1]
+
+# Find button by link-role ancestor (e.g. Save button)
+xpath=//span[normalize-space(text())='[Label Text]']/ancestor::a[@role='button']
+
+# Find link by id or title (e.g. Home)
+xpath=//a[@id='[Label Text]' or @title='[Label Text]']
+
+# Find navigation tab by visible text (e.g. Payables)
+xpath=//div[@aria-label='Navigation Tabs']//a[text()='[Label Text]']
+
+# Find search button (e.g. by aria-label or button text)
+xpath=//button[contains(normalize-space(.), '[Label Text]')]
+
+# Text area from label (e.g. Description)
+xpath=//label[contains(text(),'[Label Text]')]/../following-sibling::td/textarea
+
+# Add Row button (ancestor chaining)
+xpath=//*[normalize-space(text())='[Label Text]']/ancestor::td[1]//a[@role='button'][not(@aria-expanded) and not(@aria-label) and not(@tabindex)]
+
+# By @aria-label, non-hidden, text input
+xpath=//input[@aria-label='[Label Text]' and not(@type='hidden') and @type='text']
+
+# Number field: from label to input via table cell relation
+xpath=//label[normalize-space(text())='[Label Text]']/ancestor::td[1]/following-sibling::td//input
+
+# Generic label-to-input pattern (when structure is complex)
+xpath=//label[contains(normalize-space(.),'[Label Text]')]/following::*[self::input or self::textarea][1]
+
